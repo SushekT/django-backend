@@ -25,10 +25,10 @@ class CompanyBaseModel(BaseModel, SlugModel):
 
 class Organization(CompanyBaseModel):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')
-    team = models.ManyToManyField(User, related_name='user')
+    team = models.ManyToManyField(User, related_name='user', null=True, blank=True)
 
     def __str__(self)-> str:
-        return self.owner.name
+        return self.name
 
 
 
@@ -48,9 +48,9 @@ class Project(BaseModel, SlugModel):
 
 class Task(BaseModel, SlugModel):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
-    task_name = models.CharField(max_length=300)
+    name = models.CharField(max_length=300)
     status = models.CharField(choices=TASK_CONDITTON, default=TASK_CONDITTON[0][1], max_length=100)
     deadline = models.DateTimeField()
 
     def __str__(self) -> str:
-        return self.task_name
+        return str(self.name)
