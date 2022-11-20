@@ -7,6 +7,7 @@ class BaseModel(models.Model):
     """Base model for this project."""
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    is_archived = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
