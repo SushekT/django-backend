@@ -201,7 +201,7 @@ DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
-        'user_create': 'apps.users.api.v1.serializers.UserCreateSerializer',
+        'user_create': 'apps.users.api.v1.serializers.UserCreateViewSerializer',
 
     }
 }
