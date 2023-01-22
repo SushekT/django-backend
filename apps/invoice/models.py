@@ -14,8 +14,7 @@ class MainInvoice(BaseModel, SlugModel):
 
     @property
     def total(self):
-        return sum(task.sub_total for task in (self, main_invoice.all())) if self.main_invoice.all().exist() else 0
-
+        return sum(task.sub_total for task in self.main_invoice.all()) if self.main_invoice.all().exist() else 0
 
 
 class SubInvoice(models.Model):
