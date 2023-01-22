@@ -162,7 +162,7 @@ LOGOUT_URL = 'rest_framework:logout'
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(weeks=520),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(weeks=8),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=3),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -204,7 +204,4 @@ DJOSER = {
         'user_create': 'apps.users.api.v1.serializers.UserCreateSerializer',
 
     }
-
-
-
 }
