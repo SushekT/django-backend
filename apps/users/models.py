@@ -57,6 +57,8 @@ class User(AbstractUser, BaseModel, PermissionsMixin):
         blank=True, null=True
     )
 
+    is_profile_completed = models.BooleanField(default=False)
+
     objects = UserManager()
 
     EMAIL_FIELD = 'email'
