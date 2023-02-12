@@ -124,7 +124,7 @@ class CustomTokenObtainPairSerializer(DummySerializer, TokenObtainPairSerializer
         return data
 
 
-class UserCreateSerializer(UserCreateSerializer):
+class UserCreateViewSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = User
         fields = ('id', 'email', 'name')
