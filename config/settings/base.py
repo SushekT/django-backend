@@ -82,7 +82,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -206,12 +206,19 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_URL': 'auth/password_reset_confirm/{uid}/{token}',
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
-    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
     'SERIALIZERS': {
         'user_create': 'apps.users.api.v1.serializers.UserCreateViewSerializer',
 
-    }
+    },
+
+    #For templates
+    'password_reset_email': 'email/password_reset.html',
+    'activation_email': 'email/activation.html',
+    'confirmation_email': 'email/confirmation.html',
+    'password_changed_confirmation': 'email/password_changed_confirmation.html'
 }
 
 # Email Setup
