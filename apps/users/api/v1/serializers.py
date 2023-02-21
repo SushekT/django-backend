@@ -44,6 +44,7 @@ class UserDetailSerializer(DynamicFieldsModelSerializer):
             'is_staff',
             'last_login',
             'profile_picture',
+            'is_profile_completed'
         )
         extra_kwargs = {
             'full_name': {
