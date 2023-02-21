@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import datetime
 import os
-from decouple import config
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -32,8 +31,6 @@ BASE_DIR = os.path.join(PROJECT_DIR, 'config')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 
@@ -196,7 +193,6 @@ ATTACHMENT_MAX_UPLOAD_SIZE = 2 * 1024 * 1024
 # DJOSER Setup
 
 # For templated_mail package used by djoser
-DOMAIN = config('CLIENT_URL')
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
@@ -216,8 +212,6 @@ DJOSER = {
 
 # Email Setup
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'sushek69@gmail.com'
