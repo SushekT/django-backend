@@ -36,8 +36,7 @@ class User(AbstractUser, BaseModel, PermissionsMixin):
     )
 
     # Below fields are optional
-    profile_picture = models.ImageField(
-        upload_to=get_upload_path,
+    profile_picture = models.TextField(
         blank=True
     )
 

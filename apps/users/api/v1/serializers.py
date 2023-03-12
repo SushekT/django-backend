@@ -58,13 +58,13 @@ class UserDetailSerializer(DynamicFieldsModelSerializer):
             'profile_picture': {
                 'required': False,
                 'allow_null': True,
-                'validators': [
-                    FileExtensionValidator(
-                        allowed_extensions=['jpg', 'png']
-                    ),
-                    validate_attachment
-                ],
-                'use_url': True
+                # 'validators': [
+                #     FileExtensionValidator(
+                #         allowed_extensions=['jpg', 'png']
+                #     ),
+                #     validate_attachment
+                # ],
+                # 'use_url': True
             },
             'email': {
                 'validators': [
@@ -102,12 +102,10 @@ class UserDetailSerializer(DynamicFieldsModelSerializer):
             ))
 
         phone_number = attrs.get('phone_number')
-
         user_qs = USER.objects.all()
 
         if self.instance:
             user_qs = user_qs.exclude(id=self.instance.id)
-
         if user_qs.filter(phone_number=phone_number).exists():
             raise serializers.ValidationError({
                 'phone_number': _(
