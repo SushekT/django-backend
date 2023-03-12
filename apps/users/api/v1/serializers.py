@@ -102,12 +102,10 @@ class UserDetailSerializer(DynamicFieldsModelSerializer):
             ))
 
         phone_number = attrs.get('phone_number')
-        print('pmom',phone_number)
         user_qs = USER.objects.all()
 
         if self.instance:
             user_qs = user_qs.exclude(id=self.instance.id)
-        print( user_qs.filter(phone_number=phone_number).exists())
         if user_qs.filter(phone_number=phone_number).exists():
             raise serializers.ValidationError({
                 'phone_number': _(
