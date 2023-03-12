@@ -22,6 +22,20 @@ class SubInvoice(models.Model):
     description = models.TextField(null=True, blank=True)
     qty = models.IntegerField(null=True, blank=True)
     sub_total = models.BigIntegerField(null=True, blank=True)
-    
+
+
+
+class InvoiceTemplate(BaseModel):
+    template_name = models.CharField(max_length=256)
+    profile_logo = models.ImageField(upload_to='profile/')
+    thumbnail = models.ImageField(upload_to='thumbnail/')
+    data = models.JSONField(default=dict)
+    html_template = models.TextField()
+    ts_template = models.TextField()
+    is_archived = models.BooleanField(default=False)
+
+
+    def __str__(self) -> str:
+        return self.template_name
 
     
