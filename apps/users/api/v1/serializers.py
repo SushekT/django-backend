@@ -106,7 +106,8 @@ class UserDetailSerializer(DynamicFieldsModelSerializer):
 
         if self.instance:
             user_qs = user_qs.exclude(id=self.instance.id)
-        if user_qs.filter(phone_number=phone_number).exists():
+     
+        if user_qs.filter(phone_number=phone_number).exists() and phone_number is not None:
             raise serializers.ValidationError({
                 'phone_number': _(
                     'You cannot create user with this phone number.'

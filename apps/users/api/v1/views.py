@@ -1,13 +1,15 @@
 from django.contrib.auth import get_user_model
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 
-from apps.core.viewsets import CreateListUpdateDestroyViewSet
+from apps.core.viewsets import CreateListUpdateDestroyViewSet, RetrieveUpdateViewSet
 from apps.users.api.v1.serializers import (
     UserDetailSerializer,
     CustomTokenObtainPairSerializer, PasswordChangeSerializer
@@ -54,4 +56,15 @@ class UserViewSet(CreateListUpdateDestroyViewSet):
         user.set_password(password)
         user.save()
         return Response(serializer.data)
+    
+
+class UserProfileUpdate(generics.RetrieveUpdateDestroyAPIView):
+    model = USER
+    serializer_class = UserDetailSerializer
+    authentication_classes = [JWTAuthentication, ]
+    permission_classes = [IsAuthenticated]
+
+
+    def get_object(self):
+        return USER.objects.get(id=self.request.user.id)
 

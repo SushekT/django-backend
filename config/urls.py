@@ -36,9 +36,9 @@ if settings.DEBUG:
 
     schema_view = get_schema_view(
         openapi.Info(
-            title="Swagger",
+            title="Worthify",
             default_version='v1',
-            description="Swagger API description"
+            description="API description"
         ),
         public=True,
         permission_classes=(permissions.AllowAny,),
@@ -56,3 +56,5 @@ if settings.DEBUG:
     ) + static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
+
+
